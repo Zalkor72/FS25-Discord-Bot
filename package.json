@@ -1,0 +1,31 @@
+{
+  "name": "ls25discord",
+  "version": "0.0.1",
+  "description": "A simple discord bot for farming simulator 25",
+  "main": "source/Main.ts",
+  "scripts": {
+    "start": "npx tsc && node build/Main.js",
+    "schema": "npx json2ts -i source/Schema/ServerStats.json -o ./source/Schema/ServerStats.d.ts --unreachableDefinitions",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ls25",
+    "fs25",
+    "farming",
+    "simulator",
+    "landwirtschafts",
+    "simulator"
+  ],
+  "author": "Dennis Heinrich",
+  "license": "proprietary",
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "fast-xml-parser": "^4.5.0",
+    "json-schema-to-typescript": "^15.0.3",
+    "winston": "^3.17.0"
+  }
+}

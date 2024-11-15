@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Server": {
+      "type": "object",
+      "properties": {
+        "game": { "type": "string" },
+        "version": { "type": "string" },
+        "name": { "type": "string" },
+        "mapName": { "type": "string" },
+        "dayTime": { "type": "integer" },
+        "mapOverviewFilename": { "type": "string" },
+        "mapSize": { "type": "integer" },
+        "Slots": {
+          "type": "object",
+          "properties": {
+            "capacity": { "type": "integer" },
+            "numUsed": { "type": "integer" },
+            "Player": {
+              "type": "object",
+              "properties": {
+                "isUsed": { "type": "boolean" },
+                "isAdmin": { "type": "boolean" },
+                "uptime": { "type": "integer" },
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "z": { "type": "number" },
+                "_text": { "type": "string" }
+              },
+              "required": ["isUsed", "isAdmin", "uptime", "x", "y", "z", "_text"]
+            }
+          },
+          "required": ["capacity", "numUsed", "Player"]
+        },
+        "Vehicles": {
+          "type": "object",
+          "properties": {
+            "Vehicle": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "category": { "type": "string" },
+                "type": { "type": "string" },
+                "x": { "type": "number" },
+                "y": { "type": "number" },
+                "z": { "type": "number" },
+                "fillTypes": { "type": "string" },
+                "fillLevels": { "type": "number" }
+              },
+              "required": ["name", "category", "type", "x", "y", "z", "fillTypes", "fillLevels"]
+            }
+          },
+          "required": ["Vehicle"]
+        },
+        "Mods": {
+          "type": "object",
+          "properties": {
+            "Mod": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "author": { "type": "string" },
+                "version": { "type": "string" },
+                "hash": { "type": "string" },
+                "_text": { "type": "string" }
+              },
+              "required": ["name", "author", "version", "hash", "_text"]
+            }
+          },
+          "required": ["Mod"]
+        },
+        "Farmlands": {
+          "type": "object",
+          "properties": {
+            "Farmland": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "id": { "type": "integer" },
+                "owner": { "type": "integer" },
+                "area": { "type": "integer" },
+                "x": { "type": "number" },
+                "z": { "type": "number" }
+              },
+              "required": ["name", "id", "owner", "area", "x", "z"]
+            }
+          },
+          "required": ["Farmland"]
+        },
+        "Fields": {
+          "type": "object",
+          "properties": {
+            "Field": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "x": { "type": "number" },
+                "z": { "type": "number" },
+                "isOwned": { "type": "boolean" }
+              },
+              "required": ["id", "x", "z", "isOwned"]
+            }
+          },
+          "required": ["Field"]
+        }
+      },
+      "required": ["game", "version", "name", "mapName", "dayTime", "mapOverviewFilename", "mapSize", "Slots", "Vehicles", "Mods", "Farmlands", "Fields"]
+    }
+  },
+  "required": ["Server"]
+}
