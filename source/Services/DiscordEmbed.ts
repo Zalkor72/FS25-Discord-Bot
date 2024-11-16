@@ -83,30 +83,32 @@ export default class DiscordEmbed {
      */
     private async generateEmbedFromStatusFeed(serverStats: ServerStatusFeed): Promise<EmbedBuilder> {
         let embed = new EmbedBuilder();
-        embed.setTitle('Server Status');
+        let config = this.appConfiguration;
+
+        embed.setTitle(config.translation.discordEmbed.title);
         if (!serverStats.isOnline()) {
-            embed.setDescription('Der Server ist aktuell offline.');
+            embed.setDescription(config.translation.discordEmbed.descriptionOffline);
         } else if (serverStats.isFetching()) {
-            embed.setDescription('Der Serverstatus wird aktuell abgefragt...');
+            embed.setDescription(config.translation.discordEmbed.descriptionUnknown);
         } else {
-            embed.setDescription(`Der Server ist aktuell ${serverStats.isOnline() ? 'online' : 'offline'}`);
-            embed.setTimestamp();
-            embed.setThumbnail(this.appConfiguration.application.serverMapUrl);
+            embed.setDescription(config.translation.discordEmbed.descriptionOnline);
+            embed.setTimestamp(new Date());
+            embed.setThumbnail(config.application.serverMapUrl);
 
             let playerListString: string = '';
             if(serverStats.getPlayerList().length === 0) {
-                playerListString = 'Keine Spieler online';
+                playerListString = config.translation.discordEmbed.noPlayersOnline;
             } else {
                 playerListString = serverStats.getPlayerList().map(p => p.username).join(', ');
             }
 
             // @ts-ignore
             embed.addFields(
-                {name: 'Name:', value: serverStats.getServerName()},
-                {name: 'Passwort:', value: this.appConfiguration.application.serverPassword},
-                {name: 'Uhrzeit im Spiel:', value: serverStats.getServerTime()},
+                {name: config.translation.discordEmbed.titleServerName, value: serverStats.getServerName()},
+                {name: config.translation.discordEmbed.titleServerPassword, value: config.application.serverPassword},
+                {name: config.translation.discordEmbed.titleServerTime, value: serverStats.getServerTime()},
                 {
-                    name: `Spieler online (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
+                    name: `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
                     value: playerListString
                 },
             );
