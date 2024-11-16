@@ -17,7 +17,22 @@ discordClient.login(appConfig.discord.botToken).then(() => {
     appLogger.info(`Login successful to discord with token`);
 });
 
+/**
+ * Start the DiscordService and restart it if an error occurred
+ */
+function startDiscordService(): void {
+    try {
+        new DiscordService(discordClient);
+    } catch (exception) {
+        appLogger.error(`Restarting the discord service, an error occurred`, exception);
+    } finally {
+        setTimeout(() => {
+            startDiscordService();
+        }, 5000);
+    }
+}
+
 discordClient.on('ready', () => {
     appLogger.info(`Discord client ready. Logged in as ${discordClient.user?.username}!`);
-    new DiscordService(discordClient);
+    startDiscordService();
 });
