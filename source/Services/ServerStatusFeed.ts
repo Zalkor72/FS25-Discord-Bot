@@ -7,7 +7,7 @@ import IPlayer from "../Interfaces/Feed/IPlayer";
 export const CONNECTION_REFUSED = 'ECONNREFUSED';
 export const NOT_FOUND = 'ENOTFOUND';
 
-export default class ServerStatsFeed {
+export default class ServerStatusFeed {
     private _serverStats: ServerStats | null = null;
     private _isOnline: boolean = false;
     private _isFetching: boolean = false;
@@ -15,10 +15,19 @@ export default class ServerStatsFeed {
     constructor() {
     }
 
+    /**
+     * Returns the fetching status of the server stats feed
+     * @returns {boolean} The fetching status of the server stats feed
+     */
     public isFetching(): boolean {
         return this._isFetching;
     }
 
+    /**
+     * Get the server stats object
+     * @returns {ServerStats | null} The server stats object or null if the server is offline or fetching
+     * @private
+     */
     private getServerStats(): ServerStats | null {
         if(this._isOnline && !this._isFetching && this._serverStats) {
             return this._serverStats;
@@ -26,9 +35,13 @@ export default class ServerStatsFeed {
         return null;
     }
 
+    /**
+     * Update the server feed from the server status feed url
+     * @returns {Promise<ServerStats | null>} The server stats object or null if the fetch failed
+     */
     public async updateServerFeed(): Promise<ServerStats|null> {
         this._isFetching = true;
-        Logging.getLogger().info(`Fetching server stats from feed url`);
+        Logging.getLogger().info(`Fetching server status from feed url`);
         await fetch(Configuration.getConfiguration().application.serverStatsUrl)
             .then(
                 r => r.text()
@@ -39,7 +52,7 @@ export default class ServerStatsFeed {
 
                     // Parse the XML response
                     const parsedFeed = new XMLParser({ignoreAttributes: false, attributeNamePrefix: ''}).parse(response) as ServerStats;
-                    Logging.getLogger().info(`Server stats received`);
+                    Logging.getLogger().info(`Server status feed successful received`);
                     this._serverStats = parsedFeed;
                 }
             ).catch(
@@ -50,13 +63,13 @@ export default class ServerStatsFeed {
                     // Handle different error codes
                     switch (reason.cause.code) {
                         case CONNECTION_REFUSED:
-                            Logging.getLogger().error(`Connection refused to server stats feed`);
+                            Logging.getLogger().error(`Connection refused to server status feed`);
                             break;
                         case NOT_FOUND:
-                            Logging.getLogger().error(`Server stats feed not found`);
+                            Logging.getLogger().error(`Server status feed not found`);
                             break;
                         default:
-                            Logging.getLogger().error(`Error fetching server stats`);
+                            Logging.getLogger().error(`Error fetching server status feed`);
                             break;
                     }
                     return null;
@@ -68,6 +81,10 @@ export default class ServerStatsFeed {
         return this._serverStats;
     }
 
+    /**
+     * Returns the online status of the server
+     * @returns {boolean} The online status of the server
+     */
     public isOnline(): boolean {
         return this._isOnline;
     }
