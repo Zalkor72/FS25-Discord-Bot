@@ -100,10 +100,12 @@ export default class DiscordEmbed {
 
         embed.setTitle(config.translation.discordEmbed.title);
         if (!serverStats.isOnline()) {
+            embed.setColor(0xCA0000);
             embed.setDescription(config.translation.discordEmbed.descriptionOffline);
         } else if (serverStats.isFetching()) {
             embed.setDescription(config.translation.discordEmbed.descriptionUnknown);
         } else {
+            embed.setColor(0x00CA00);
             embed.setDescription(config.translation.discordEmbed.descriptionOnline);
             embed.setTimestamp(new Date());
             embed.setThumbnail(config.application.serverMapUrl);
