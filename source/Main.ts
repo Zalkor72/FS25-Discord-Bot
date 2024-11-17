@@ -25,10 +25,7 @@ function startDiscordService(): void {
         new DiscordService(discordClient);
     } catch (exception) {
         appLogger.error(`Restarting the discord service, an error occurred`, exception);
-    } finally {
-        setTimeout(() => {
-            startDiscordService();
-        }, 5000);
+        startDiscordService();
     }
 }
 

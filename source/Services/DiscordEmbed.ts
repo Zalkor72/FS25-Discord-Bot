@@ -41,15 +41,28 @@ export default class DiscordEmbed {
                 return;
             }
             this.discordAppClient.channels.fetch(this.appConfiguration.discord.channelId as Snowflake).then(async channel => {
+                /**
+                 * Send the initial message to the channel (if the first message id is not set) or
+                 * the message is meanwhile deleted
+                 * @param embedMessage
+                 */
+                let sendInitialMessage = (embedMessage: EmbedBuilder) => {
+                    // noinspection JSAnnotator
+                    (channel as TextChannel).send({embeds: [embedMessage]}).then(message => {
+                        this.firstMessageId = message.id;
+                    });
+                };
+
                 this.generateEmbedFromStatusFeed(this.serverStatsFeed).then(embedMessage => {
                     if (this.firstMessageId !== null) {
                         (channel as TextChannel).messages.fetch(this.firstMessageId).then(message => {
                             message.edit({embeds: [embedMessage]});
+                        }).catch(() => {
+                            this.appLogger.warn('Message not found, sending new message');
+                            sendInitialMessage(embedMessage);
                         });
                     } else {
-                        (channel as TextChannel).send({embeds: [embedMessage]}).then(message => {
-                            this.firstMessageId = message.id;
-                        })
+                        sendInitialMessage(embedMessage);
                     }
                 });
             });
@@ -95,7 +108,7 @@ export default class DiscordEmbed {
             embed.setTimestamp(new Date());
             embed.setThumbnail(config.application.serverMapUrl);
 
-            let playerListString: string = '';
+            let playerListString: string;
             if(serverStats.getPlayerList().length === 0) {
                 playerListString = config.translation.discordEmbed.noPlayersOnline;
             } else {
