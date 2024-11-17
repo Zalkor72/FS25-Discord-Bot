@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  ls25bot:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: ls25bot
+    restart: always
+    volumes:
+        - ./config.json:/app/config.json

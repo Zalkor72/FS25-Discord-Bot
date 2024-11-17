@@ -3,7 +3,6 @@
 .idea
 .ddev
 config.json
-
 config.prod.json
 config.test.json
 config.dev.json
