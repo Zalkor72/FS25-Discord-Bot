@@ -1,11 +1,15 @@
 # Farming Simulator 25 - Discord Bot
 
-This bot will post the server stats of a Farming Simulator 25 server to a Discord channel. The bot will post the server name, server password, server time, and the player count. The bot will update the server stats every x seconds (configurable).
+This bot will post the server stats of a Farming Simulator 25 server to a Discord channel. The bot will post the server
+name, server password, server time, and the player count. The bot will update the server stats every x seconds (
+configurable).
 
 ![discord_embed.png](misc%2Fimages%2Fdiscord_embed.png)
 
-The bot is written in Node.js and uses the [discord.js](https://discord.js.org/) library to interact with the Discord API. It
-uses the XML-Feed from the Farming Simulator 25 server to get the server stats (you can find the feed URL in the web interface of the server).
+The bot is written in Node.js and uses the [discord.js](https://discord.js.org/) library to interact with the Discord
+API. It
+uses the XML-Feed from the Farming Simulator 25 server to get the server stats (you can find the feed URL in the web
+interface of the server).
 
 ![bot_terminal.png](misc%2Fimages%2Fbot_terminal.png)
 
@@ -34,7 +38,8 @@ uses the XML-Feed from the Farming Simulator 25 server to get the server stats (
 1. Clone the repository to your server
 2. Move the `config.example.json` to `config.json`
 3. Fill in the required fields in the `config.json` file, do not delete fields, just leave them empty for default values
-4. All fields with a `(*)` are required fields for the bot to work. The other fields are optional and can be left by default
+4. All fields with a `(*)` are required fields for the bot to work. The other fields are optional and can be left by
+   default
 
 | **- Key -**                                  | **- Description -**                                                       |
 |----------------------------------------------|---------------------------------------------------------------------------|
