@@ -1,4 +1,22 @@
 # Farming Simulator 25 - Discord Bot
+
+This bot will post the server stats of a Farming Simulator 25 server to a Discord channel. The bot will post the server name, server password, server time, and the player count. The bot will update the server stats every x seconds (configurable).
+
+![discord_embed.png](misc%2Fimages%2Fdiscord_embed.png)
+
+The bot is written in Node.js and uses the [discord.js](https://discord.js.org/) library to interact with the Discord API. It
+uses the XML-Feed from the Farming Simulator 25 server to get the server stats (you can find the feed URL in the web interface of the server).
+
+![bot_terminal.png](misc%2Fimages%2Fbot_terminal.png)
+
+# Requirements
+
+- Node.js - if you want to run the bot without Docker
+- NPM - if you want to run the bot without Docker
+- Docker (optional) - if you want to run the bot in a Docker container
+
+## Install the bot
+
 ## Create a Discord bot
 
 1. Open the [Discord Developer Portal](https://discord.com/developers/applications)
@@ -11,17 +29,41 @@
 8. Click on `Copy` to copy the URL to install the bot to a guild
 9. Your installation link url should look like this: `https://discord.com/oauth2/authorize?client_id=CLIENT_ID`
 
-## Install the bot
+## Configure the bot
 
-1. Clone the repository
+1. Clone the repository to your server
 2. Move the `config.example.json` to `config.json`
-   1. serverPassword: The password to the server
-   2. serverStatsUrl: The feed URL to the server stats (from the web interface from the server)
-   3. serverMapUrl: The feed URL to the server map (from the web interface from the server)
-   4. guildId: The guild id where the bot should be installed
-   5. channelId: The channel id where the bot should post the server stats
-   6. botToken: The bot token from the Discord Developer Portal
-3. Add the bot token to the `config.json`
-4. Add the prefix to the `config.json`
-5. Run `npm install`
-6. Run `npm start`
+3. Fill in the required fields in the `config.json` file, do not delete fields, just leave them empty for default values
+4. All fields with a `(*)` are required fields for the bot to work. The other fields are optional and can be left by default
+
+| **- Key -**                                  | **- Description -**                                                       |
+|----------------------------------------------|---------------------------------------------------------------------------|
+| (*) application.serverPassword               | The password to join the server (or leave empty)                          |
+| (*) application.serverStatsUrl               | The feed URL to the server stats (from the web interface from the server) |
+| (*) application.serverMapUrl                 | The feed URL to the server map (from the web interface from the server)   |
+| (*) application.updateIntervalSeconds        | The interval in seconds to update the server stats                        |
+| (*) discord.guildId                          | The guild id where the bot should be installed                            |
+| (*) discord.channelId                        | The channel id where the bot should post the server stats                 |
+| (*) discord.botToken                         | The bot token from the Discord Developer Portal                           |
+| translation.discordEmbed.title               | The title of the Discord embed                                            |
+| translation.discordEmbed.descriptionOnline   | The description when the server is online                                 |
+| translation.discordEmbed.descriptionOffline  | The description when the server is offline                                |
+| translation.discordEmbed.descriptionUnknown  | The description when the server status is unknown                         |
+| translation.discordEmbed.titleServerName     | The title of the server name                                              |
+| translation.discordEmbed.titleServerPassword | The title of the server password                                          |
+| translation.discordEmbed.titleServerTime     | The title of the server time                                              |
+| translation.discordEmbed.titlePlayerCount    | The title of the player count                                             |
+| translation.discordEmbed.noPlayersOnline     | The message when no players are online                                    |
+
+## Run inside a Docker container
+
+1. Run `docker-compose up -d --build` in the root directory of the repository
+2. The bot should be running now and posting the server stats to the Discord channel
+
+### Run without Docker (Node.js)
+
+1. Clone the repository to your server
+2. Run `npm install`
+3. Run `npm start`
+4. The bot should be running now and posting the server stats to the Discord channel
+5. If you close the terminal, the bot will stop running
