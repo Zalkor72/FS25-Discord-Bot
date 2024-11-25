@@ -5,6 +5,18 @@ import DiscordService from "./Services/DiscordEmbed";
 
 const appLogger = Logging.getLogger();
 const appConfig: Configuration = new Configuration();
+
+/**
+ * Check if the configuration is valid and exit the application if it is not
+ */
+if(!appConfig.isConfigurationValid()) {
+    appLogger.error("Configuration is not valid. Exiting application.");
+    process.exit(1);
+}
+
+/**
+ * Create a new discord client instance
+ */
 const discordClient = new Client({
     intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages]
 });

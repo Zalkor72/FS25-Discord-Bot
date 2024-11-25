@@ -6,7 +6,6 @@
     "updateIntervalSeconds": 30
   },
   "discord": {
-    "guildId": "DiscordServerId_12345",
     "channelId": "DiscordChannelId_12345",
     "botToken": "DiscordSecretBotToken_XYZ"
   },
