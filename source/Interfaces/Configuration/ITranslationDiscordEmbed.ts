@@ -4,6 +4,8 @@ export default interface ITranslationDiscordEmbed {
     descriptionOffline: string;
     descriptionUnknown: string;
     titleServerName: string;
+    titleServerMap: string;
+    titleServerMods: string;
     titleServerPassword: string;
     titleServerTime: string;
     titlePlayerCount: string;

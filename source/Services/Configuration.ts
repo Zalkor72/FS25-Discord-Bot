@@ -76,8 +76,22 @@ export default class Configuration implements IConfiguration{
             || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titleServerName)
             || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titleServerPassword)
             || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titleServerTime)
+            || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titleServerMap)
+            || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titleServerMods)
             || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.titlePlayerCount)
             || this.isValueEmptyOrUndefined(this?.translation?.discordEmbed?.noPlayersOnline)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthJanuary)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthFebruary)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthMarch)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthApril)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthMay)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthJune)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthJuly)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthAugust)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthSeptember)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthOctober)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthNovember)
+            || this.isValueEmptyOrUndefined(this?.translation?.common?.monthDecember)
         );
     }
 

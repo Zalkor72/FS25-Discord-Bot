@@ -3,6 +3,7 @@ import Configuration from "./Configuration";
 import {XMLParser} from "fast-xml-parser";
 import Logging from "./Logging";
 import IPlayer from "../Interfaces/Feed/IPlayer";
+import IConfiguration from "../Interfaces/Configuration/IConfiguration";
 
 export const CONNECTION_REFUSED = 'ECONNREFUSED';
 export const NOT_FOUND = 'ENOTFOUND';
@@ -102,7 +103,7 @@ export default class ServerStatusFeed {
      * @returns {string} The server map name
      */
     public getServerMap(): string {
-        return <string>this.getServerStats()?.Server.map;
+        return <string>this.getServerStats()?.Server.mapName;
     }
 
     /**
@@ -115,6 +116,37 @@ export default class ServerStatusFeed {
             return 0;
         }
         return dayTime / (60 * 60 * 1000) + 0.0001;
+    }
+
+    /**
+     * Returns the server month as a string
+     * @returns {string} The server month as a string
+     */
+    public getServerMonth(): string {
+        let config: IConfiguration = Configuration.getConfiguration();
+        let dayTime = this.getServerStats()?.Server.dayTime;
+        if (dayTime === undefined) {
+            return "Error";
+        }
+        let month = dayTime / (60 * 60 * 1000 * 24);
+        month = month % 1;
+        month = month * 12;
+        month = Math.floor(month);
+        let months = [
+            config.translation.common.monthJanuary,
+            config.translation.common.monthFebruary,
+            config.translation.common.monthMarch,
+            config.translation.common.monthApril,
+            config.translation.common.monthMay,
+            config.translation.common.monthJune,
+            config.translation.common.monthJuly,
+            config.translation.common.monthAugust,
+            config.translation.common.monthSeptember,
+            config.translation.common.monthOctober,
+            config.translation.common.monthNovember,
+            config.translation.common.monthDecember
+        ]
+        return months[month-1];
     }
 
     /**
@@ -136,7 +168,7 @@ export default class ServerStatusFeed {
         if(minutesString.length === 1) {
             minutesString = `0${minutesString}`;
         }
-        return `${hoursString}:${minutesString}`;
+        return `${hoursString}:${minutesString} (${this.getServerMonth()})`;
     }
 
     /**

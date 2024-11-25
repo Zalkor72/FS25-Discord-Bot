@@ -98,6 +98,8 @@ export default class DiscordEmbed {
         let embed = new EmbedBuilder();
         let config = this.appConfiguration;
 
+        serverStats.getServerMonth();
+
         embed.setTitle(config.translation.discordEmbed.title);
         if (!serverStats.isOnline()) {
             embed.setColor(0xCA0000);
@@ -127,6 +129,7 @@ export default class DiscordEmbed {
                 {name: config.translation.discordEmbed.titleServerName, value: serverStats.getServerName()},
                 {name: config.translation.discordEmbed.titleServerPassword, value: serverPassword},
                 {name: config.translation.discordEmbed.titleServerTime, value: serverStats.getServerTime()},
+                {name: config.translation.discordEmbed.titleServerMap, value: serverStats.getServerMap()},
                 {
                     name: `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
                     value: playerListString
