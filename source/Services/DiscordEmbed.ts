@@ -117,10 +117,15 @@ export default class DiscordEmbed {
                 playerListString = serverStats.getPlayerList().map(p => p.username).join(', ');
             }
 
+            let serverPassword = config.application.serverPassword;
+            if(config.application.serverPassword == "") {
+                serverPassword = "-/-";
+            }
+
             // @ts-ignore
             embed.addFields(
                 {name: config.translation.discordEmbed.titleServerName, value: serverStats.getServerName()},
-                {name: config.translation.discordEmbed.titleServerPassword, value: config.application.serverPassword},
+                {name: config.translation.discordEmbed.titleServerPassword, value: serverPassword},
                 {name: config.translation.discordEmbed.titleServerTime, value: serverStats.getServerTime()},
                 {
                     name: `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
