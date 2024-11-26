@@ -3,14 +3,14 @@ name: Docker Build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ls25discord
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push:
