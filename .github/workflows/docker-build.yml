@@ -9,8 +9,8 @@ on:
       - master
 
 env:
-  REGISTRY: ghcr.io # Change to your container registry if not GitHub's
-  IMAGE_NAME: my-image-name # Replace with the name of your image
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ls25discord
 
 jobs:
   build-and-push:
