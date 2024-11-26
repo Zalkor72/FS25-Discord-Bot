@@ -4,16 +4,31 @@ This bot will post the server stats of a Farming Simulator 25 server to a Discor
 name, server password, server time, and the player count. The bot will update the server stats every x seconds (
 configurable).
 
-![discord_embed.png](misc%2Fimages%2Fdiscord_en.png)
+## Screenshots
+
+<details>
+<summary>Discord embed in english</summary>
+
+![discord_en.png](misc%2Fimages%2Fdiscord_en.png)
+
+</details>
+
+<details>
+<summary>Discord embed in german</summary>
+
+![discord_de.png](misc%2Fimages%2Fdiscord_de.png)
+
+</details>
+
+## How it works
 
 The bot is written in Node.js and uses the [discord.js](https://discord.js.org/) library to interact with the Discord
-API. It
-uses the XML-Feed from the Farming Simulator 25 server to get the server stats (you can find the feed URL in the web
+API. It uses the XML-Feed from the Farming Simulator 25 server to get the server stats (you can find the feed URL in the web
 interface of the server).
 
 ![bot_terminal.png](misc%2Fimages%2Fbot_terminal.png)
 
-# Requirements
+## Requirements
 
 - Node.js - if you want to run the bot without Docker
 - NPM - if you want to run the bot without Docker
@@ -21,7 +36,7 @@ interface of the server).
 
 ## Install the bot
 
-## Create a Discord bot
+### Create a Discord bot
 
 1. Open the [Discord Developer Portal](https://discord.com/developers/applications)
 2. Click on `New Application`
@@ -33,7 +48,7 @@ interface of the server).
 8. Click on `Copy` to copy the URL to install the bot to a guild
 9. Your installation link url should look like this: `https://discord.com/oauth2/authorize?client_id=CLIENT_ID`
 
-## Configure the bot
+### Configure the bot
 
 1. Clone the repository to your server
 2. Move the `config.example-de.json` or `config.example-en.json` to `config.json` (depending on your language)
@@ -73,7 +88,7 @@ interface of the server).
 | translation.common.monthNovember             | The month November in the language of the server                          |
 | translation.common.monthDecember             | The month December in the language of the server                          |
 
-## Run inside a Docker container
+### Run inside a Docker container
 
 1. Run `docker-compose up -d --build` in the root directory of the repository
 2. The bot should be running now and posting the server stats to the Discord channel
