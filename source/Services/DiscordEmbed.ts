@@ -56,12 +56,14 @@ export default class DiscordEmbed {
                 this.generateEmbedFromStatusFeed(this.serverStatsFeed).then(embedMessage => {
                     if (this.firstMessageId !== null) {
                         (channel as TextChannel).messages.fetch(this.firstMessageId).then(message => {
+                            this.appLogger.info(`Message found, editing message with new embed`);
                             message.edit({embeds: [embedMessage]});
                         }).catch(() => {
                             this.appLogger.warn('Message not found, sending new message');
                             sendInitialMessage(embedMessage);
                         });
                     } else {
+                        this.appLogger.info(`No message found, sending new message`);
                         sendInitialMessage(embedMessage);
                     }
                 });

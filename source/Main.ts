@@ -3,8 +3,14 @@ import Configuration from "./Services/Configuration";
 import Logging from "./Services/Logging";
 import DiscordService from "./Services/DiscordEmbed";
 
+// Create a new logger instance and configuration instance
 const appLogger = Logging.getLogger();
 const appConfig: Configuration = new Configuration();
+
+// Log the application start and version
+const packageJson = require('../package.json');
+appLogger.info(`Starting | App: ${packageJson.name} | Version: ${packageJson.version}`);
+appLogger.info(`----------------------------------------------------`);
 
 /**
  * Check if the configuration is valid and exit the application if it is not
