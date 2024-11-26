@@ -124,12 +124,19 @@ export default class DiscordEmbed {
                 serverPassword = "-/-";
             }
 
+            let serverMods = serverStats.getServerMods();
+            let serverModsText = "-/-";
+            if(serverMods.length > 0) {
+                serverModsText = serverMods.map(mod => `${mod.name}`).join(', ');
+            }
+
             // @ts-ignore
             embed.addFields(
                 {name: config.translation.discordEmbed.titleServerName, value: serverStats.getServerName()},
                 {name: config.translation.discordEmbed.titleServerPassword, value: serverPassword},
                 {name: config.translation.discordEmbed.titleServerTime, value: serverStats.getServerTime()},
                 {name: config.translation.discordEmbed.titleServerMap, value: serverStats.getServerMap()},
+                {name: config.translation.discordEmbed.titleServerMods, value: serverModsText},
                 {
                     name: `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
                     value: playerListString

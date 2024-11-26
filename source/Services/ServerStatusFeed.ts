@@ -4,6 +4,7 @@ import {XMLParser} from "fast-xml-parser";
 import Logging from "./Logging";
 import IPlayer from "../Interfaces/Feed/IPlayer";
 import IConfiguration from "../Interfaces/Configuration/IConfiguration";
+import IMod from "../Interfaces/Feed/IMod";
 
 export const CONNECTION_REFUSED = 'ECONNREFUSED';
 export const NOT_FOUND = 'ENOTFOUND';
@@ -116,6 +117,20 @@ export default class ServerStatusFeed {
             return 0;
         }
         return dayTime / (60 * 60 * 1000) + 0.0001;
+    }
+
+    public getServerMods(): IMod[] {
+        let modList = this.getServerStats()?.Server.Mods.Mod;
+        if(modList === undefined || !Array.isArray(modList)) {
+            return [];
+        }
+        return modList.map((mod: any) => {
+            return {
+                name: mod['#text'],
+                author: mod.author,
+                version: mod.version
+            } as IMod;
+        });
     }
 
     /**
