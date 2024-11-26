@@ -5,6 +5,7 @@
   "main": "source/Main.ts",
   "scripts": {
     "start": "npx tsc && node build/Main.js",
+    "start-only": "node build/Main.js",
     "build": "npx tsc",
     "schema": "npx json2ts -i source/Schema/ServerStats.json -o ./source/Schema/ServerStats.d.ts --unreachableDefinitions",
     "test": "echo \"Error: no test specified\" && exit 1"

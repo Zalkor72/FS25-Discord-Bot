@@ -6,6 +6,10 @@ LABEL authors="Dennis Heinrich"
 WORKDIR /app
 COPY . /app
 RUN npm install
+RUN npm run build
 
-CMD ["npm", "start"]
-ENTRYPOINT ["npm", "start"]
+## Simplyfy the rm commands
+RUN rm -rf .ddev/ source/ misc/ .git .gitignore config.example.json Dockerfile docker-compose.yml README.md
+
+CMD ["npm", "run", "start-only"]
+ENTRYPOINT ["npm", "run", "start-only"]
