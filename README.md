@@ -4,7 +4,7 @@ This bot will post the server stats of a Farming Simulator 25 server to a Discor
 name, server password, server time, and the player count. The bot will update the server stats every x seconds (
 configurable).
 
-![discord_embed.png](misc%2Fimages%2Fdiscord_embed.png)
+![discord_embed.png](misc%2Fimages%2Fdiscord_en.png)
 
 The bot is written in Node.js and uses the [discord.js](https://discord.js.org/) library to interact with the Discord
 API. It
@@ -36,7 +36,7 @@ interface of the server).
 ## Configure the bot
 
 1. Clone the repository to your server
-2. Move the `config.example.json` to `config.json`
+2. Move the `config.example-de.json` or `config.example-en.json` to `config.json` (depending on your language)
 3. Fill in the required fields in the `config.json` file, do not delete fields, just leave them empty for default values
 4. All fields with a `(*)` are required fields for the bot to work. The other fields are optional and can be left by
    default
