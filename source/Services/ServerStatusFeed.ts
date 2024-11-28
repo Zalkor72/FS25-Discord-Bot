@@ -119,9 +119,13 @@ export default class ServerStatusFeed {
         return dayTime / (60 * 60 * 1000) + 0.0001;
     }
 
+    /**
+     * Get the server mods from the server stats feed
+     * @returns {IMod[]} The server mods as an array of IMod objects
+     */
     public getServerMods(): IMod[] {
-        let modList = this.getServerStats()?.Server.Mods.Mod;
-        if(modList === undefined || !Array.isArray(modList)) {
+        let modList = this.getServerStats()?.Server?.Mods?.Mod;
+        if(modList === undefined || !Array.isArray(modList) || modList == null) {
             return [];
         }
         return modList.map((mod: any) => {
