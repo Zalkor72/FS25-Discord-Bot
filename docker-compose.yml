@@ -9,3 +9,19 @@ services:
     restart: always
     volumes:
         - ./config.json:/app/config.json
+
+  restart:
+    image: docker:cli
+    restart: unless-stopped
+    container_name: ls25bot-restart
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: [ "/bin/sh","-c" ]
+    command:
+      - |
+        echo "Restarting ls25bot container is running"
+        while true; do
+          sleep 7200 # Each 2 hours
+          echo "Restarting ls25bot container at $(date)"
+          docker restart ls25bot
+        done
