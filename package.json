@@ -1,6 +1,6 @@
 {
   "name": "ls25-discord-bot",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A simple discord bot for farming simulator 25",
   "main": "source/Main.ts",
   "scripts": {
