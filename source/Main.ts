@@ -2,6 +2,7 @@ import {Client, IntentsBitField} from 'discord.js';
 import Configuration from "./Services/Configuration";
 import Logging from "./Services/Logging";
 import DiscordService from "./Services/DiscordEmbed";
+import VersionChecker from './Services/VersionChecker';
 
 // Create a new logger instance and configuration instance
 const appLogger = Logging.getLogger();
@@ -19,6 +20,24 @@ if(!appConfig.isConfigurationValid()) {
     appLogger.error("Configuration is not valid. Exiting application.");
     process.exit(1);
 }
+
+/**
+ * Check the version of the bot and log if it is up to date
+ */
+const versionChecker = new VersionChecker();
+versionChecker.checkVersionIsUpdated().then((isUpToDate: boolean): void => {
+    if (!isUpToDate) {
+        appLogger.warn(`====================================================`);
+        appLogger.warn(`====================================================`);
+        appLogger.warn(`The bot is not up to date. Please update it soon.`);
+        appLogger.warn(`Use the command 'git pull && docker compose up -d --build' to update the bot.`);
+        appLogger.warn(`====================================================`);
+        appLogger.warn(`====================================================`);
+
+    } else {
+        appLogger.info(`The bot is up to date. No update needed.`);
+    }
+});
 
 /**
  * Create a new discord client instance
