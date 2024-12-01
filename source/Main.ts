@@ -38,7 +38,7 @@ discordClient.login(appConfig.discord.botToken).then(() => {
 /**
  * Start the DiscordService and restart it if an error occurred
  */
-function startDiscordService(): void {
+async function startDiscordService(): Promise<void> {
     try {
         new DiscordService(discordClient);
     } catch (exception) {

@@ -69,7 +69,7 @@ discord.js library to interact with Discord and fetches server stats via the XML
 
 ## Running the Bot
 
-### Option 1: Run Inside a Docker Container
+### Option 1: Run Inside a Docker Container (Recommended)
 
 1. Navigate to the root directory of the cloned repository.
 2. Build and start the container:
