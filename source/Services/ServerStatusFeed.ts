@@ -138,37 +138,6 @@ export default class ServerStatusFeed {
     }
 
     /**
-     * Returns the server month as a string
-     * @returns {string} The server month as a string
-     */
-    public getServerMonth(): string {
-        let config: IConfiguration = Configuration.getConfiguration();
-        let dayTime = this.getServerStats()?.Server.dayTime;
-        if (dayTime === undefined) {
-            return "Error";
-        }
-        let month = dayTime / (60 * 60 * 1000 * 24);
-        month = month % 1;
-        month = month * 12;
-        month = Math.floor(month);
-        let months = [
-            config.translation.common.monthJanuary,
-            config.translation.common.monthFebruary,
-            config.translation.common.monthMarch,
-            config.translation.common.monthApril,
-            config.translation.common.monthMay,
-            config.translation.common.monthJune,
-            config.translation.common.monthJuly,
-            config.translation.common.monthAugust,
-            config.translation.common.monthSeptember,
-            config.translation.common.monthOctober,
-            config.translation.common.monthNovember,
-            config.translation.common.monthDecember
-        ]
-        return months[month-1];
-    }
-
-    /**
      * Returns the server time in the format HH:MM
      * @returns {string} The server time in the format HH:MM
      */
@@ -187,7 +156,7 @@ export default class ServerStatusFeed {
         if(minutesString.length === 1) {
             minutesString = `0${minutesString}`;
         }
-        return `${hoursString}:${minutesString} (${this.getServerMonth()})`;
+        return `${hoursString}:${minutesString}`;
     }
 
     /**
