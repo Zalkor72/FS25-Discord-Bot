@@ -100,8 +100,6 @@ export default class DiscordEmbed {
         let embed = new EmbedBuilder();
         let config = this.appConfiguration;
 
-        serverStats.getServerMonth();
-
         embed.setTitle(config.translation.discordEmbed.title);
         if (!serverStats.isOnline()) {
             embed.setColor(0xCA0000);
