@@ -1,5 +1,5 @@
 
-![Unbenannt](https://github.com/user-attachments/assets/66177223-248e-4ec7-88d2-abad5747baf3)
+![Logo des Repositorys](https://github.com/user-attachments/assets/8e483785-5bc4-40b1-9b6c-b5c7e2cce76c)
 
 # Farming Simulator 25 - Discord Bot
 
