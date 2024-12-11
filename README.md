@@ -1,10 +1,12 @@
+
+![Unbenannt](https://github.com/user-attachments/assets/66177223-248e-4ec7-88d2-abad5747baf3)
+
 # Farming Simulator 25 - Discord Bot
 
 This bot periodically updates a Discord channel with stats from a Farming Simulator 25 server. 
 It posts the server name, password, time, and player count. Written in Node.js, it uses the 
 discord.js library to interact with Discord and fetches server stats via the XML feed 
 (accessible through the server's web interface). The update interval is configurable.
-
 
 ## Screenshots
 
