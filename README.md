@@ -1,8 +1,8 @@
 # Farming Simulator 25 - Discord Bot
 
-This bot periodically updates a Discord channel with stats from a Farming Simulator 25 server. 
-It posts the server name, password, time, and player count. Written in Node.js, it uses the 
-discord.js library to interact with Discord and fetches server stats via the XML feed 
+This bot periodically updates a Discord channel with stats from a Farming Simulator 25 server.
+It posts the server name, password, time, and player count. Written in Node.js, it uses the
+discord.js library to interact with Discord and fetches server stats via the XML feed
 (accessible through the server's web interface). The update interval is configurable.
 
 ## Screenshots
@@ -10,21 +10,21 @@ discord.js library to interact with Discord and fetches server stats via the XML
 <details>
 <summary>Discord embed in english</summary>
 
-![discord_en.png](misc%2Fimages%2Fdiscord_en.png)
+![discord_en.png](misc%2Fimages%2Freadme%2Fdiscord_en.png)
 
 </details>
 
 <details>
 <summary>Discord embed in german</summary>
 
-![discord_de.png](misc%2Fimages%2Fdiscord_de.png)
+![discord_de.png](misc%2Fimages%2Freadme%2Fdiscord_de.png)
 
 </details>
 
 <details>
 <summary>Terminal output (NodeJS)</summary>
 
-![bot_terminal.png](misc%2Fimages%2Fbot_terminal.png)
+![bot_terminal.png](misc%2Fimages%2Freadme%2Fbot_terminal.png)
 
 </details>
 
@@ -56,8 +56,8 @@ discord.js library to interact with Discord and fetches server stats via the XML
 
 1. Clone the repository to your server
 2. Locate the configuration files:
-   - Use either 
-     - `config.example-de.json` (for German) 
+   - Use either
+     - `config.example-de.json` (for German)
      - `config.example-en.json` (for English)
    - Rename the chosen file to `config.json`.
 3. Open `config.json` and fill in the required fields:
@@ -72,21 +72,27 @@ discord.js library to interact with Discord and fetches server stats via the XML
 
 1. Navigate to the root directory of the cloned repository.
 2. Build and start the container:
+
    ```bash
    docker-compose up -d --build
    ```
+
 3. The bot should now be running and posting server stats to the specified Discord channel.
 
 ### Option 2: Run Without Docker (Using Node.js)
 
 1. Navigate to the root directory of the cloned repository.
 2. Install dependencies:
+
    ```bash
    npm install
    ```
+
 3. Start the bot:
+
    ```bash
    npm start
    ```
+
 4. The bot should now be running and posting server stats to the specified Discord channel.
    - Note: Closing the terminal will stop the bot. Use a process manager like [PM2](https://pm2.io/) to keep it running.
