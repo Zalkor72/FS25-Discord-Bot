@@ -1,6 +1,3 @@
-
-![Logo des Repositorys](https://github.com/user-attachments/assets/8e483785-5bc4-40b1-9b6c-b5c7e2cce76c)
-
 # Farming Simulator 25 - Discord Bot
 
 This bot periodically updates a Discord channel with stats from a Farming Simulator 25 server. 
