@@ -93,6 +93,16 @@ export default class DiscordEmbed {
     }
 
     /**
+     * Truncates a string at a given length
+     * @param text The input text to truncate
+     * @param maxLength The allowed characters until truncation
+     * @returns The truncated string
+     */
+    private async truncateText(text: string, maxLength = 1024): Promise<string> {
+        return text.length > maxLength ? text.slice(0, maxLength - 3) + '...' : text; 
+    }
+
+    /**
      * Send server stats embed in a channel
      * @param serverStats
      */
@@ -113,6 +123,8 @@ export default class DiscordEmbed {
             embed.setThumbnail(config.application.serverMapUrl);
 
             let playerListString: string;
+            let playerListTitleString = `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()??0}/${serverStats.getMaxPlayerCount()??0}):`;
+
             if(serverStats.getPlayerList().length === 0) {
                 playerListString = config.translation.discordEmbed.noPlayersOnline;
             } else {
@@ -127,7 +139,7 @@ export default class DiscordEmbed {
             let serverMods = serverStats.getServerMods();
             let serverModsText = "-/-";
             if(serverMods.length > 0) {
-                serverModsText = serverMods.map(mod => `${mod.name}`).join(', ');
+                serverModsText = await this.truncateText(serverMods.map(mod => `${mod.name}`).join(', '));
             }
 
             // @ts-ignore
@@ -138,12 +150,11 @@ export default class DiscordEmbed {
                 {name: config.translation.discordEmbed.titleServerMap, value: serverStats.getServerMap()},
                 {name: config.translation.discordEmbed.titleServerMods, value: serverModsText},
                 {
-                    name: `${config.translation.discordEmbed.titlePlayerCount} (${serverStats.getPlayerCount()}/${serverStats.getMaxPlayerCount()}):`,
+                    name: playerListTitleString,
                     value: playerListString
                 },
             );
         }
-        this.appLogger.debug(embed);
         return embed;
     }
 }

@@ -161,18 +161,18 @@ export default class ServerStatusFeed {
 
     /**
      * Returns the server player count
-     * @returns {number} The server player count
+     * @returns {number | null | undefined} The server player count
      */
-    public getPlayerCount(): number {
-        return <number>this.getServerStats()?.Server.Slots.numUsed;
+    public getPlayerCount(): number | null | undefined {
+        return <number>this.getServerStats()?.Server?.Slots?.numUsed;
     }
 
     /**
      * Returns the server player count
-     * @returns {number} The server player count
+     * @returns {number | null | undefined} The server player count
      */
-    public getMaxPlayerCount(): number {
-        return <number>this.getServerStats()?.Server.Slots.capacity;
+    public getMaxPlayerCount(): number | null | undefined {
+        return <number>this.getServerStats()?.Server?.Slots?.capacity;
     }
 
     /**
